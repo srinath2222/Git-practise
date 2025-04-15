@@ -1,0 +1,253 @@
+Day -1&2 (Git & Git Hub) 
+
+context - 
+	1. version control
+	2. why git?
+	3. install git & configure
+
+1. Version Control
+* it keeps the records that we have changed
+* it allows collaborative development
+* we can easily know who made what changes and when that changes done.
+* we can rollback/comeback to any changes
+
+--> Local VCS - All the changes and versions are stored on our local machine/computer. Only one person can work on code at a time and if the computer crashes, everything is lost.(No back up)
+
+--> Centralized VCS - There will be a main serve repository and the developer/collaborator can pull and push file from and to the main server repository. And all the other developers can do the same and can access the file and update the file to the main server.
+
+If the central server goes down, no one can work or collaborate. And developers cannot work offline.if the project and the team is big the main sever will take much time to pull and push the code/file from/to the central server.
+
+--> Distributed VCS - In this VCS every developer has a full copy of the file/repository including the version and history of the repository. And everyting is local after cloning the repository to the local.
+
+We don't need a network connection every time. If the server does down the developer already have the copy of the repository (so it is a full backup).
+
+
+Popular Version control tools - Git, Bit bucket, perforce, mercurial, subversion
+
+2. Git is an open-source, distributed version control system designed for speed and efficiency. Git works fast and offline as well.
+
+Committing Changes, Merging branches, Switching branches, viewing history, Obtaining file revisions these does not need network.
+
+Git latest version - 2.49.0
+
+--> Git is is for command line
+--> GitHub is the web interface and also a code hosting site and free for                      public repositories.
+
+3.Configure -
+
+To Customize the git environment :
+
+--> git config --global user.name "Marella Srinath Reddy"  (used to initialize the author/user name to track which user have commit the changes)
+
+--> git config --global user.email "marellasrinathreddy@gmail.com" (used to initialize the author/user email)
+
+--> git config --list (Used to list the user name and user email)
+
+--> git help (Used to know about the git commands)
+
+Git Workflow :
+
+1. Initialize Repository - git init
+2. Clone Repository - git clone <repository url>
+3. Create or Switch branch - git branch <branch name>, git checkout <branch name>
+4. Track Changes - git status & git diff
+5. Stage Changes - git add <file name> or git add. (to stage all changes)
+6. Commit Changes - git commit -m  "For descriptive message"
+7. Pull Changes (Optional) - git pull <remote name> <branch name>
+8. Push Changes - git push <remote name> <branch name>
+9. Resolve Conflicts (if needed) - Merge conflict may arise when collaborating. if there is any merge conflict we have to resolve it, stage the fixes, and commit.
+10. Merge or create pull request - Once we completed our work, we have to merge the changes into the main branch or create a pull request for review.
+ 
+Git Operations :
+
+--> 1. Creating a repositories 2. Making Changes 3. Parallel development (if working with a group of people) 4. Synching repositories
+
+Git Commands :
+
+--> git init - this command initializes a new git repository in a project folder and starts tracking the folder using git.
+
+--> git status - This command gives the current state of the repository, like is the repository changed and committed or not committed.
+
+--> git add & git add. - These commands tell the git to add the specific file or all the files/changes to save and commit at the next step (commit).
+
+--> git commit - This command actually saves the file/changes to the repository's history and stores it with a unique identifier (hash). (git commit -m "This command is useful to provide descriptive message like this")
+
+--> git branch - Helps to create and manage separate workspace (branches) to code.
+
+--> git merge - After finishing work on the feature branch, we use this command to bring those changes into the main branch.
+
+--> git rebase - 
+
+--> git add origin - connects our local repository to the remote server (Git Hub). It is like linking our code to an online storage location so that we can collaborate or back it up. 
+
+--> git push - Sends our local commits to the remote repository. After making changes locally. we use this command to share our updates with the team or save them online on the remote server. 
+
+--> git pull - Fetches and integrates the latest changes from the remote repository into our local one.
+
+Git & Git Hub Day 3,
+
+Git Internals :-
+
+Working Directory
+       |
+Indexing/Staging
+       |
+  Repository         
+
+--> Files can be tracked or untracked
+
+Tracked - These are files that Git is already aware of—they’re being tracked for changes. Tracked files fall into three main states:
+
+Unmodified – No changes since the last commit.
+
+Modified – You’ve changed the file but not committed it yet.
+
+Staged – You’ve marked the file to be committed in the next snapshot.
+
+Example:
+You added a file using git add and committed it using git commit. From now on, Git tracks changes to this file.
+
+Untracked - These are files in your project folder that Git doesn’t know about yet. They haven’t been staged or committed.
+
+Example:
+You create a new file in your project, but you haven’t done git add on it yet. Git will show it as "untracked" when you run git status.
+
+--> Fast forward Merge - A fast-forward merge happens when your current branch (like main) has no new commits since the feature branch (like feature/login) branched off.
+
+So, instead of creating a merge commit, Git just moves the pointer of the branch forward to the latest commit.
+
+No merge conflict, no extra commit. It’s like a straight-line jump forward.
+
+--> Merge Conflicts - A merge conflict happens when Git can’t automatically decide how to merge changes between branches — usually because two people (or branches) changed the same part of a file differently.
+
+Git tries to auto-merge, but when it’s unsure, it throws up its hands
+
+Common Scenarios-
+
+1.You edited the same line of code in both branches.
+
+2.One branch deleted a file, another modified it.
+
+3.File renamed in one branch, modified in another.
+
+
+Distributed Workflows:-
+
+--> fetch - this command is like clone command but here we are connecting the remote repo to the local repo
+
+--> pull - fetch + merge (Pull command is used for the large sized repo (in GB's of size))
+
+--> push - used to push/send the local repo to the remote repo.
+
+git remote:-
+
+The git remote command is used to:
+
+View, add, rename, or remove connections to remote repositories (like GitHub, GitLab, etc.)
+
+📋 Common git remote Commands-
+
+  Command	                               Purpose	                                          Example
+git remote	                List all remotes (names only)              origin
+git remote -v	                List remotes with their URLs (verbose)	   origin https://github.com/srinath/my-repo.git (fetch)
+git remote add <name> <url>	Add a new remote	                   git remote add origin https://github.com/srinath/my-repo.git
+git remote remove <name>	Remove a remote	                           git remote remove origin
+git remote rename <old> <new>	Rename a remote	                           git remote rename origin upstream
+git remote show <name>	        Show detailed info about a remote	   git remote show origin
+
+git tag:- git tag is used to mark a specific commit with a meaningful name, like a version number (v1.0.0, v2.1.3, etc.).
+
+Think of it as placing a label or a bookmark on a particular snapshot of your project — usually used to mark release versions.
+
+Common git tag Commands:
+
+Command	                                      What it does
+
+git tag	                                List all tags
+git tag <tagname>	                Create a lightweight tag
+git tag -a <tagname> -m "message"	Create an annotated tag with a message
+git show <tagname>	                Show details about the tag and its commit
+git tag -d <tagname>	                Delete a local tag
+git push origin <tagname>	        Push a specific tag to remote
+git push origin --tags	                Push all local tags to remote
+
+Lightweight vs Annotated Tags:
+
+Tag Type	                                Description
+
+Lightweight	                Just a name pointing to a commit (like a branch)
+Annotated ✅ (Recommended)	Stores tagger info, date, message — good for releases
+
+--> Store (almost) everything in git.
+
+Git Branching Strategies -
+
+✅ 1. Git Flow → "Big Team, Big Project"
+📚 main = published book (ready for public)
+
+✍️ develop = draft version (under editing)
+
+🔖 feature/xyz = each person writing a chapter
+
+🛠 release/x.y = book is ready, just checking formatting
+
+🐛 hotfix/x.y.z = fixing a typo in already printed books
+
+💡 Best when: You have proper releases, versions, and a team working together.
+
+🚀 2. GitHub Flow → "Simple & Fast"
+👨‍💻 You create a new branch like feature/homepage
+
+🚀 Work on it
+
+✅ Push it to GitHub and open a Pull Request
+
+🔁 Get it reviewed
+
+🔄 Merge back to main
+
+💡 Best when: You deploy frequently and want things quick and clean.
+
+🌿 3. Trunk-Based Development → "Everyone on One Road"
+Only one main branch: main (or trunk)
+
+Developers work in small steps and push code every day (sometimes even hourly!)
+
+Use feature flags to turn new things on/off safely
+
+💡 Best when: You have automation (CI/CD) and want speed and simplicity.
+
+🛤 4. GitLab Flow → "From Dev to Staging to Production"
+Work starts in feature branches
+
+Merged into dev → for testing
+
+Then into staging → for pre-production
+
+Finally into main or production
+
+💡 Best when: You want to test features in steps before going live.
+
+🗂 5. Release Branching → "One Branch per Version"
+Keep main clean
+
+Create branches like:
+
+release/v1.0
+
+release/v2.0
+
+If you need to fix something in old version 1.0: → Go to release/v1.0, make the fix, and patch it.
+
+💡 Best when: You’re maintaining multiple versions at once (like software companies).
+
+🎯 Easy Chart:
+Strategy	    Simple Meaning	                   Good For
+
+Git Flow	Team follows structured steps	Big teams, planned releases
+GitHub Flow	Create branch → PR → Merge	Small teams, frequent updates
+Trunk-Based	One branch for all	        Fast teams, DevOps pipelines
+GitLab Flow	Dev → Staging → Prod	        Projects using GitLab CI
+
+Release	Each version has its own branch	Maintaining old versions
+
